@@ -2,29 +2,61 @@ let exArray = [4, 8, 5, 7, 1, 6, 10, 2, 3, 9];
 let exArray2 = [9, 7, 4, 2, 3, 8, 1, 5, 10, 6];
 
 const sortPartition = (arr, lowPointI = 0, highPointJ = arr.length - 1) => {
-  console.log("gets here");
   let pivotIndex = lowPointI + 1;
   while (pivotIndex < highPointJ) {
+    console.log(arr, pivotIndex, lowPointI, highPointJ);
     const pivotValue = arr[pivotIndex];
-    console.log(pivotIndex, highPointJ);
-    console.log("runs once");
-    while (arr[lowPointI] < pivotValue || lowPointI !== pivotIndex) {
+    while (arr[lowPointI] < pivotValue) {
       lowPointI++;
     }
-    while (arr[highPointJ] > pivotValue || highPointJ !== pivotIndex) {
+    while (arr[highPointJ] > pivotValue) {
       highPointJ--;
     }
     const temp = arr[lowPointI];
     arr[lowPointI] = arr[highPointJ];
     arr[highPointJ] = temp;
-    console.log("gets here2");
+    console.log(arr);
     pivotIndex++;
   }
-  console.log(highPointJ);
+  console.log("FINISHED");
   return [arr, highPointJ];
 };
 
-console.log(sortPartition(exArray)[0]);
+const sortPartitionLast = (arr, lowPointI, highPointJ) => {
+  let pivotIndex = lowPointI + 1;
+  while (pivotIndex < arr.length) {
+    console.log(arr, pivotIndex, lowPointI, highPointJ);
+    const pivotValue = arr[pivotIndex];
+    while (arr[lowPointI] < pivotValue) {
+      lowPointI++;
+    }
+    while (arr[highPointJ] > pivotValue) {
+      highPointJ--;
+    }
+    const temp = arr[lowPointI];
+    arr[lowPointI] = arr[highPointJ];
+    arr[highPointJ] = temp;
+    console.log(arr);
+    pivotIndex++;
+  }
+  console.log("FINISHED");
+  return [arr, highPointJ];
+};
+
+const [firstPartitionArray, newJAfterFirst] = sortPartition(exArray);
+console.log(firstPartitionArray, newJAfterFirst);
+const [secondPartitionArray, newJAfterSecond] = sortPartition(
+  exArray,
+  (i = 0),
+  (j = newJAfterFirst)
+);
+console.log(secondPartitionArray, newJAfterSecond);
+const [finalArray, finalJ] = sortPartitionLast(
+  exArray,
+  (i = newJAfterFirst + 1),
+  (j = exArray.length - 1)
+);
+console.log(finalArray, finalJ);
 
 // const quickSort = (arr, i = 0, j = arr.length - 1) => {
 //   let pivotIndex = Math.ceil((j - i) / 2);
