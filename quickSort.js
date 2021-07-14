@@ -1,49 +1,61 @@
 let exArray = [4, 8, 5, 7, 1, 6, 10, 2, 3, 9];
 let exArray2 = [9, 7, 4, 2, 3, 8, 1, 5, 10, 6];
-const quickSort = (arr, i = 0, j = arr.length - 1) => {
-  let pivotIndex = Math.ceil((j - i) / 2);
-  let pivotValue = arr[pivotIndex];
 
-  let sortingComplete = false;
-  while (!sortingComplete) {
-    while (arr[i] < pivotValue) {
-      i++;
+const sortPartition = (arr, lowPointI = 0, highPointJ = arr.length - 1) => {
+  console.log("gets here");
+  let pivotIndex = lowPointI + 1;
+  while (pivotIndex < highPointJ) {
+    const pivotValue = arr[pivotIndex];
+    console.log(pivotIndex, highPointJ);
+    console.log("runs once");
+    while (arr[lowPointI] < pivotValue || lowPointI !== pivotIndex) {
+      lowPointI++;
     }
-    while (arr[j] > pivotValue) {
-      j--;
+    while (arr[highPointJ] > pivotValue || highPointJ !== pivotIndex) {
+      highPointJ--;
     }
-    // swap values at i and j
-    const temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-    if (i === j) {
-      sortingComplete = true;
-    }
+    const temp = arr[lowPointI];
+    arr[lowPointI] = arr[highPointJ];
+    arr[highPointJ] = temp;
+    console.log("gets here2");
+    pivotIndex++;
   }
-  // if (!sortingRightPartition) {
-  while (j > 0) {
-    j = j - 1;
-    quickSort(arr, (i = 0), j);
-  }
-  // }
-  if (j === 1) {
-    sortingRightPartition = true;
-  }
-  if (sortingRightPartition) {
-    while (i < arr.length - 1) {
-      // i++;
-      return quickSort(
-        arr,
-        (i = i + 1),
-        (j = arr.length - 1),
-        (sortingRightPartition = true)
-      );
-    }
-  }
-  console.log(arr);
-  return arr;
+  console.log(highPointJ);
+  return [arr, highPointJ];
 };
-console.log(quickSort(exArray));
+
+console.log(sortPartition(exArray)[0]);
+
+// const quickSort = (arr, i = 0, j = arr.length - 1) => {
+//   let pivotIndex = Math.ceil((j - i) / 2);
+//   let pivotValue = arr[pivotIndex];
+
+//   let sortingComplete = false;
+//   while (!sortingComplete) {
+//     while (arr[i] < pivotValue) {
+//       i++;
+//     }
+//     while (arr[j] > pivotValue) {
+//       j--;
+//     }
+//     // swap values at i and j
+//     const temp = arr[i];
+//     arr[i] = arr[j];
+//     arr[j] = temp;
+//     if (i === j) {
+//       sortingComplete = true;
+//     }
+//   }
+//   // if (!sortingRightPartition) {
+//   while (j > 0) {
+//     j = j - 1;
+//     quickSort(arr, (i = 0), j);
+//   }
+//   // }
+//   console.log(arr);
+//   return arr;
+// };
+// console.log(quickSort(exArray));
 // i =
 
 // if (!sortingRightPartition) {
