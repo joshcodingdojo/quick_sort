@@ -1,45 +1,119 @@
 let exArray = [4, 8, 5, 7, 1, 6, 10, 2, 3, 9];
-// const pivotIndex = exArray.length / 2;
-// const pivotValue = exArray[pivotIndex];
-// let sortingComplete = false;
-
-// All values less than pivot on left of pivot and
-// all values greater than pivot on the right
-const quickSort = (
-  arr,
-  i = 0,
-  j = arr.length - 1,
-  pivotInitialSort = false,
-  sort
-) => {
-  console.log("begin function");
-  let pivotIndex = arr.length / 2;
+let exArray2 = [9, 7, 4, 2, 3, 8, 1, 5, 10, 6];
+const quickSort = (arr, i = 0, j = arr.length - 1) => {
+  let pivotIndex = Math.ceil((j - i) / 2);
   let pivotValue = arr[pivotIndex];
 
   let sortingComplete = false;
   while (!sortingComplete) {
     while (arr[i] < pivotValue) {
       i++;
-      console.log("i is now", i);
     }
     while (arr[j] > pivotValue) {
       j--;
-      console.log("j is now", j);
     }
     // swap values at i and j
     const temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
-    console.log(arr);
     if (i === j) {
       sortingComplete = true;
-    } else {
-      quickSort(arr, i, j);
     }
   }
+  // if (!sortingRightPartition) {
+  while (j > 0) {
+    j = j - 1;
+    quickSort(arr, (i = 0), j);
+  }
+  // }
+  if (j === 1) {
+    sortingRightPartition = true;
+  }
+  if (sortingRightPartition) {
+    while (i < arr.length - 1) {
+      // i++;
+      return quickSort(
+        arr,
+        (i = i + 1),
+        (j = arr.length - 1),
+        (sortingRightPartition = true)
+      );
+    }
+  }
+  console.log(arr);
+  return arr;
 };
-quickSort(exArray);
+console.log(quickSort(exArray));
+// i =
 
+// if (!sortingRightPartition) {
+//   j = Math.ceil((arr.length - 1) / 2) - 1;
+//   console.log("j is ", j);
+//   console.log("gets here");
+
+// }
+
+// sort right partition
+// i = Math.ceil((arr.length - 1) / 2) + 1;
+// while (i < arr.length - 1) {
+//   if (i < Math.ceil((arr.length - 1) / 2) + 1) {
+//     i = Math.ceil((arr.length - 1) / 2) + 1;
+//   }
+//   i = i + 1;
+//   console.log("i is", i);
+//   console.log(arr);
+//   quickSort(
+//     arr,
+//     (i = i),
+//     (j = arr.length - 1),
+//     (sortingRightPartition = true)
+//   );
+// }
+
+// i = Math.ceil((arr.length - 1) / 2);
+// j = arr.length;
+// while (i < arr.length) {
+//   // let sortingRightPartition = true;
+//   i = i + 1;
+//   j = j - 1;
+
+//   quickSort(arr, (i = i), (j = j), (sortingRightPartition = true));
+// }
+// console.log(arr);
+// let sortingLeftPartition = true;
+// while (sortingLeftPartition) {
+//   j = j - 1;
+//   quickSort(arr, (i = 0), j);
+//   if (j === 0) {
+//     sortingLeftPartition = false;
+//   }
+// }
+// i = Math.ceil((arr.length - 1) / 2) + 1;
+// i = Math.ceil((arr.length - 1) / 2) + 1;
+// while (i < arr.length - 1) {
+//   console.log("i is", i);
+//   i = i + 1;
+//   quickSort(arr, i);
+//   console.log(arr);
+// }
+// return arr;
+// console.log(arr);
+// j = Math.ceil((arr.length - 1) / 2);
+// while (i)
+// console.log("gets to J");
+// // j = Math.ceil(arr.length / 2);
+// // j = j - 1;
+// console.log("j is called with", j);
+// quickSort(arr, (i = 0), j-1);
+// console.log(arr);
+
+// i = arr.length / 2 + 1;
+// console.log("gets here");
+// while (i < arr.length - 1) {
+//   console.log("yo");
+//   quickSort(arr, i + 1, (j = arr.length - 1));
+//   console.log(arr);
+// }
 // Sort values to the left of pivot
 // let sortingLeftOfPivotComplete = false;
 // while (!sortingLeftOfPivotComplete) {
@@ -56,3 +130,6 @@ quickSort(exArray);
 //     console.log(j);
 //   }
 // }
+
+// let exArray = [4, 8, 5, 7, 1, 6, 10, 2, 3, 9];
+// console.log(Math.ceil((exArray.length - 1) / 2) + 1);
